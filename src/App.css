@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  overflow-x: auto;
 }
 
 .App-logo {
@@ -51,4 +50,56 @@
 
 .black {
   background-color: black;
+}
+
+.inputs {
+  background-color: rgb(23, 47, 80);
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+  width: fit-content;
+  margin: auto;
+  color: aqua;
+  position: relative;
+}
+
+.inputs::after {
+  content: "recomended: 33 by 75 at default size";
+  position: absolute;
+  width: fit-content;
+  top: 0;
+  right: -300px;
+  color: grey;
+}
+
+.inputs::before {
+  content: "MAX: 100";
+  position: absolute;
+  width: fit-content;
+  top: 0;
+  left: -100px;
+  color: grey;
+}
+
+.inputs input {
+  text-align: center;
+}
+
+.gameContainer {
+  display: grid;
+  place-items: center;
+  padding-top: 5px;
+}
+
+.start,
+.stop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px;
+  padding: 5px;
+  background-color: green;
+}
+
+.stop {
+  background-color: red;
 }

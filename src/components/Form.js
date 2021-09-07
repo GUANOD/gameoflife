@@ -19,7 +19,7 @@ class Form extends Component {
 
   render() {
     return (
-      <form>
+      <form className="inputs">
         <label htmlFor="rows">Rows</label>
         <input
           type="number"
