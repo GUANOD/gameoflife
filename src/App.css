@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  overflow-x: auto;
 }
 
 .App-logo {
@@ -35,4 +36,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.cell {
+  border: 1px solid black;
+  margin: 0;
+  padding: 0;
+}
+
+.game {
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.black {
+  background-color: black;
 }
