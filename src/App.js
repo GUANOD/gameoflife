@@ -4,38 +4,46 @@ import Form from "./components/Form";
 import { React, useState } from "react";
 
 function App() {
-  const [rows, setRows] = useState(null);
-  const [columns, setColumns] = useState(null);
-  const [size, setSize] = useState(null);
-  const [run, setRun] = useState(false);
+  // const [rows, setRows] = useState(null);
+  // const [columns, setColumns] = useState(null);
+  const [size, setSize] = useState("");
 
-  function handleSize(rows, columns, size) {
-    setRows(rows);
-    setColumns(columns);
+  const [grid, setGrid] = useState("");
+  const [width, setWidth] = useState("");
+
+  function handleGrid(rows, columns, size) {
+    // setRows(rows);
+    // setColumns(columns);
+    createGrid(rows, columns);
     setSize(size);
+    let fSize = size || 20;
+    setWidth(columns * fSize);
   }
 
-  function createGrid() {
-    let arr = [];
-    for (let i = 1; i <= rows; i++) {
-      let row = [];
-      for (let j = 1; j <= columns; j++) {
-        row.push([]);
+  function createGrid(rows, columns) {
+    if (rows && columns) {
+      let arr = [];
+      for (let i = 1; i <= rows; i++) {
+        let row = [];
+        for (let j = 1; j <= columns; j++) {
+          row.push("");
+        }
+        arr.push(row);
       }
-      arr.push(row);
+      setGrid(arr);
+    } else {
+      setGrid("");
     }
-    console.log("array is", arr);
-    return arr;
   }
 
   return (
     <div className="App">
-      <Form run={run} handleSize={handleSize} />
-      {rows && columns ? (
-        //JAI CREE ALORS UNE GRID ICI ET JE L'ENVOYE EN PROPS POUR ETRE RENDERED
+      <Form handleGrid={handleGrid} />
+      {grid ? (
         <Table
-          setRun={(value) => setRun(value)}
-          grid={createGrid()}
+          width={width}
+          grid={grid}
+          setGrid={(value) => setGrid(value)}
           size={size ? size : 20}
         />
       ) : (

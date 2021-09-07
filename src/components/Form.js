@@ -8,7 +8,7 @@ class Form extends Component {
     this.setState(
       { [target.name]: target.value > 100 ? 100 : target.value },
       () => {
-        this.props.handleSize(
+        this.props.handleGrid(
           this.state.rows,
           this.state.columns,
           this.state.size
