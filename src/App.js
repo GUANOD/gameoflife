@@ -10,15 +10,12 @@ function App() {
   const [running, setRunning] = useState(false);
   const [speed, setSpeed] = useState("");
 
-
-
   function handleGrid(rows, columns, size, speed) {
     createGrid(rows, columns);
     setSize(size);
     let fSize = size || 20;
     setWidth(columns * fSize);
     setSpeed(speed);
-
   }
 
   function createGrid(rows, columns) {
@@ -39,13 +36,14 @@ function App() {
 
   return (
     <div className="App">
+      {console.log("app", grid)}
       <Form handleGrid={handleGrid} />
       {grid ? (
         <React.Fragment>
           <Table
+            key={JSON.stringify(grid)}
             width={width}
             grid={grid}
-            setGrid={(value) => setGrid(value)}
             size={size ? size : 20}
             setRunning={setRunning}
             running={running}
