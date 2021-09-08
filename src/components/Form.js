@@ -8,7 +8,7 @@ class Form extends Component {
     this.setState(
       { [target.name]: target.value > 100 ? 100 : target.value },
       () => {
-        this.props.handleSize(
+        this.props.handleGrid(
           this.state.rows,
           this.state.columns,
           this.state.size
@@ -19,7 +19,7 @@ class Form extends Component {
 
   render() {
     return (
-      <form>
+      <form className="inputs">
         <label htmlFor="rows">Rows</label>
         <input
           type="number"
@@ -28,6 +28,7 @@ class Form extends Component {
           name="rows"
           value={this.state.rows}
           onChange={(e) => this.handleChange(e.target)}
+          disabled={this.props.run}
         ></input>
 
         <label htmlFor="columns">Columns</label>
@@ -38,13 +39,14 @@ class Form extends Component {
           value={this.state.columns}
           maxLength="2"
           onChange={(e) => this.handleChange(e.target)}
+          disabled={this.props.run}
         ></input>
 
         <label htmlFor="size">Size</label>
         <input
           type="range"
-          min="5"
-          max="20"
+          min="10"
+          max="30"
           id="size"
           name="size"
           value={this.state.size}
