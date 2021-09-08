@@ -9,7 +9,7 @@ class Table extends Component {
     newGrid[i][j] = newGrid[i][j] === 1 ? "" : 1;
     console.table(newGrid);
     this.props.setGrid(newGrid);
-    this.setState({ run: this.state.run + 1 });
+    // this.setState({ run: this.state.run + 1 });
   };
 
   runSim = () => {
