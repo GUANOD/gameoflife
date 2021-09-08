@@ -1,21 +1,26 @@
 import React, { Component } from "react";
 
 class Table extends Component {
-  state = { run: 0, interval: "" };
+  state = {
+    run: 0,
+    interval: "",
+    grid: this.props.grid,
+  };
 
   handleGridChange = (i, j) => {
     console.log(i, j);
-    let newGrid = this.props.grid;
+    let newGrid = this.state.grid;
+    console.log("stategrid", this.state.grid);
+    console.log("newGrid", newGrid);
     newGrid[i][j] = newGrid[i][j] === 1 ? "" : 1;
     console.table(newGrid);
-    this.props.setGrid(newGrid);
-    // this.setState({ run: this.state.run + 1 });
+    this.setState({ grid: newGrid });
   };
 
   runSim = () => {
     this.props.setRunning(true);
     let interval = setInterval(() => {
-      let grid = this.props.grid;
+      let grid = [...this.state.grid];
 
       let newGrid = [];
 
@@ -45,8 +50,8 @@ class Table extends Component {
         newGrid.push(rows);
       });
 
-      this.props.setGrid(newGrid);
-    }, 500);
+      this.setState({ grid: newGrid });
+    }, this.props.speed);
 
     this.setState({ interval });
   };
@@ -61,7 +66,7 @@ class Table extends Component {
       <div className="gameContainer">
         <table width={this.props.width} className="game">
           <tbody>
-            {this.props.grid.map((elm, i) => {
+            {this.state.grid.map((elm, i) => {
               return (
                 <tr key={i}>
                   {elm.map((td, j) => {
@@ -69,7 +74,7 @@ class Table extends Component {
                       <td
                         key={j}
                         className={
-                          this.props.grid[i][j] === 1 ? "cell black" : "cell"
+                          this.state.grid[i][j] === 1 ? "cell black" : "cell"
                         }
                         onClick={() => this.handleGridChange(i, j)}
                         width={this.props.size}
