@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 class Form extends Component {
-  state = { rows: "", columns: "", size: "" };
+  state = { rows: "", columns: "", size: "", speed:"" };
 
   handleChange = (target) => {
     console.log(target.value);
@@ -11,11 +11,25 @@ class Form extends Component {
         this.props.handleGrid(
           this.state.rows,
           this.state.columns,
-          this.state.size
+          this.state.size,
+          this.state.speed
         );
       }
     );
   };
+
+  handleSpeed = (target) =>{
+    this.setState({ [target.name]: target.value }, ()=>{
+      
+        this.props.handleGrid(
+          this.state.rows,
+          this.state.columns,
+          this.state.size,
+          this.state.speed
+        );
+    })
+  }
+
 
   render() {
     return (
@@ -53,6 +67,19 @@ class Form extends Component {
           step="1"
           onChange={(e) => this.handleChange(e.target)}
         ></input>
+
+        <label htmlFor="speed">Speed</label>
+        <input
+          type ="range"
+          min="100"
+          max="1000"
+          id="speed"
+          name="speed"
+          value={this.state.speed}
+          step="100"
+          onChange={(e) => this.handleSpeed(e.target)}
+        ></input>
+
       </form>
     );
   }

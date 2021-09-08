@@ -8,12 +8,17 @@ function App() {
   const [grid, setGrid] = useState("");
   const [width, setWidth] = useState("");
   const [running, setRunning] = useState(false);
+  const [speed, setSpeed] = useState("");
 
-  function handleGrid(rows, columns, size) {
+
+
+  function handleGrid(rows, columns, size, speed) {
     createGrid(rows, columns);
     setSize(size);
     let fSize = size || 20;
     setWidth(columns * fSize);
+    setSpeed(speed);
+
   }
 
   function createGrid(rows, columns) {
@@ -44,6 +49,7 @@ function App() {
             size={size ? size : 20}
             setRunning={setRunning}
             running={running}
+            speed={speed}
           />
         </React.Fragment>
       ) : (

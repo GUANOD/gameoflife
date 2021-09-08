@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 
 class Table extends Component {
-  state = { run: 0, interval: "" };
+  state = { 
+    run: 0, 
+    interval: "", 
+  };
 
   handleGridChange = (i, j) => {
     console.log(i, j);
@@ -46,7 +49,7 @@ class Table extends Component {
       });
 
       this.props.setGrid(newGrid);
-    }, 500);
+    }, this.props.speed);
 
     this.setState({ interval });
   };
