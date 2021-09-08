@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 function App() {
   const [size, setSize] = useState("");
-  const [grid, setGrid] = useState("");
+  const [grid, setGrid] = useState([]);
   const [width, setWidth] = useState("");
   const [running, setRunning] = useState(false);
 
@@ -28,24 +28,23 @@ function App() {
       }
       setGrid(arr);
     } else {
-      setGrid("");
+      setGrid([]);
     }
   }
 
   return (
     <div className="App">
+      {console.log(grid)}
       <Form handleGrid={handleGrid} />
-      {grid ? (
-        <React.Fragment>
-          <Table
-            width={width}
-            grid={grid}
-            setGrid={(value) => setGrid(value)}
-            size={size ? size : 20}
-            setRunning={setRunning}
-            running={running}
-          />
-        </React.Fragment>
+      {grid.length ? (
+        <Table
+          width={width}
+          grid={grid}
+          setGrid={setGrid}
+          size={size ? size : 20}
+          setRunning={setRunning}
+          running={running}
+        />
       ) : (
         <p>No input</p>
       )}
