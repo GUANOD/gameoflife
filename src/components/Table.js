@@ -5,6 +5,7 @@ class Table extends Component {
     run: 0,
     interval: "",
     grid: this.props.grid,
+    counterGen: 0
   };
 
   handleGridChange = (i, j) => {
@@ -20,6 +21,7 @@ class Table extends Component {
   runSim = () => {
     this.props.setRunning(true);
     let interval = setInterval(() => {
+      this.setState({counterGen: this.state.counterGen + 1})
       let grid = [...this.state.grid];
 
       let newGrid = [];
@@ -95,6 +97,10 @@ class Table extends Component {
             })}
           </tbody>
         </table>
+        <div className="generation">              
+                 <p> Générations :  {this.state.counterGen}</p> 
+                 
+        </div>
         <button
           onClick={
             this.props.running ? () => this.stopSim() : () => this.runSim()
