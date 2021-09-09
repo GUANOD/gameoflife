@@ -79,7 +79,11 @@ class Table extends Component {
                       <td
                         key={j}
                         className={"cell"}
-                        style =  {this.state.grid[i][j] === 1 ? {background: this.props.color}:{}}
+                        style={
+                          this.state.grid[i][j] === 1
+                            ? { background: this.props.color }
+                            : {}
+                        }
                         onClick={() => this.handleGridChange(i, j)}
                         width={this.props.size}
                         height={this.props.size}

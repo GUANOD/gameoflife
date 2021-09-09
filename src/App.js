@@ -18,7 +18,7 @@ function App() {
     setWidth(columns * size);
   }
 
-  function createGrid(rows, columns) {
+  function createGrid(rows, columns, option) {
     setColumns(columns);
     setWidth(columns * size);
     if (rows && columns) {
@@ -26,7 +26,11 @@ function App() {
       for (let i = 1; i <= rows; i++) {
         let row = [];
         for (let j = 1; j <= columns; j++) {
-          row.push("");
+          if (option) {
+            Math.random() > 0.3 ? row.push("") : row.push(1);
+          } else {
+            row.push("");
+          }
         }
         arr.push(row);
       }
@@ -51,7 +55,7 @@ function App() {
         handleSize={handleSize}
         setColor={setColor}
       />
-      {grid ? (
+      {grid.length ? (
         <React.Fragment>
           <Table
             key={JSON.stringify(grid)}

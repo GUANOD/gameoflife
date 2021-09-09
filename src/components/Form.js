@@ -9,7 +9,7 @@ class Form extends Component {
     this.setState(
       { [target.name]: target.value > 100 ? 100 : target.value },
       () => {
-        this.props.createGrid(this.state.rows, this.state.columns);
+        this.props.createGrid(this.state.rows, this.state.columns, false);
       }
     );
   };
@@ -84,6 +84,23 @@ class Form extends Component {
             })
           }
         ></input>
+        <button
+          className="random"
+          onClick={(e) => {
+            e.preventDefault();
+            this.props.createGrid(this.state.rows, this.state.columns, true);
+          }}
+        >
+          Randomize
+        </button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            this.props.createGrid(this.state.rows, this.state.columns);
+          }}
+        >
+          Reset
+        </button>
       </form>
     );
   }
