@@ -1,24 +1,25 @@
 import "./App.css";
 import Table from "./components/Table";
 import Form from "./components/Form";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 function App() {
-  const [size, setSize] = useState("");
+  const [size, setSize] = useState(20);
   const [grid, setGrid] = useState([]);
   const [width, setWidth] = useState("");
   const [running, setRunning] = useState(false);
-  const [speed, setSpeed] = useState("");
+  const [speed, setSpeed] = useState(500);
+  const [columns, setColumns] = useState("");
+  const child = useRef();
 
-  function handleGrid(rows, columns, size, speed) {
-    createGrid(rows, columns);
+  function handleSize(size) {
     setSize(size);
-    let fSize = size || 20;
-    setWidth(columns * fSize);
-    setSpeed(speed);
+    setWidth(columns * size);
   }
 
   function createGrid(rows, columns) {
+    setColumns(columns);
+    setWidth(columns * size);
     if (rows && columns) {
       let arr = [];
       for (let i = 1; i <= rows; i++) {
@@ -34,10 +35,20 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    if (!running) return;
+    child.current.changeSpeed();
+  });
+
   return (
     <div className="App">
       {console.log("app", grid)}
-      <Form handleGrid={handleGrid} />
+      <Form
+        setWidth={setWidth}
+        createGrid={createGrid}
+        setSpeed={setSpeed}
+        handleSize={handleSize}
+      />
       {grid ? (
         <React.Fragment>
           <Table
@@ -48,6 +59,7 @@ function App() {
             setRunning={setRunning}
             running={running}
             speed={speed}
+            ref={child}
           />
         </React.Fragment>
       ) : (

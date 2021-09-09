@@ -9,7 +9,7 @@ class Table extends Component {
 
   handleGridChange = (i, j) => {
     console.log(i, j);
-    let newGrid = this.state.grid;
+    let newGrid = [...this.state.grid];
     console.log("stategrid", this.state.grid);
     console.log("newGrid", newGrid);
     newGrid[i][j] = newGrid[i][j] === 1 ? "" : 1;
@@ -60,6 +60,11 @@ class Table extends Component {
     clearInterval(this.state.interval);
     this.props.setRunning(false);
   };
+
+  changeSpeed() {
+    this.stopSim();
+    this.runSim();
+  }
 
   render() {
     return (

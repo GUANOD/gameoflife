@@ -1,35 +1,23 @@
 import React, { Component } from "react";
+const speed = [1000, 900, 800, 700, 600, 500, 400, 300, 200, 100];
 
 class Form extends Component {
-  state = { rows: "", columns: "", size: "", speed:"" };
+  state = { rows: "", columns: "", size: "", speed: "" };
 
   handleChange = (target) => {
     console.log(target.value);
     this.setState(
       { [target.name]: target.value > 100 ? 100 : target.value },
       () => {
-        this.props.handleGrid(
-          this.state.rows,
-          this.state.columns,
-          this.state.size,
-          this.state.speed
-        );
+        this.props.createGrid(this.state.rows, this.state.columns);
       }
     );
   };
 
-  handleSpeed = (target) =>{
-    this.setState({ [target.name]: target.value }, ()=>{
-      
-        this.props.handleGrid(
-          this.state.rows,
-          this.state.columns,
-          this.state.size,
-          this.state.speed
-        );
-    })
-  }
-
+  handleSpeed = (value) => {
+    this.setState({ speed: value });
+    this.props.setSpeed(speed[this.state.speed]);
+  };
 
   render() {
     return (
@@ -65,21 +53,24 @@ class Form extends Component {
           name="size"
           value={this.state.size}
           step="1"
-          onChange={(e) => this.handleChange(e.target)}
+          onChange={(e) =>
+            this.setState({ size: e.target.value }, () =>
+              this.props.handleSize(this.state.size)
+            )
+          }
         ></input>
 
         <label htmlFor="speed">Speed</label>
         <input
-          type ="range"
-          min="100"
-          max="1000"
+          type="range"
+          min="0"
+          max="10"
           id="speed"
           name="speed"
           value={this.state.speed}
-          step="100"
-          onChange={(e) => this.handleSpeed(e.target)}
+          step="1"
+          onChange={(e) => this.handleSpeed(e.target.value)}
         ></input>
-
       </form>
     );
   }
