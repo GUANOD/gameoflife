@@ -7,6 +7,7 @@ class Form extends Component {
     columns: "", 
     size: "", 
     speed:5,
+    color: "#000000"
 
     
 };
@@ -21,7 +22,8 @@ class Form extends Component {
           this.state.rows,
           this.state.columns,
           this.state.size,
-          this.state.speed
+          this.state.speed,
+          this.state.color
         );
       }
     );
@@ -37,10 +39,20 @@ class Form extends Component {
           this.state.rows,
           this.state.columns,
           this.state.size,
-          allSpeeds[value]
+          allSpeeds[value],
         );
     })
-  }
+  };
+
+  handleColor = (value) => {
+    console.log(value)    
+    
+    this.setState({color : value}, () => {
+      this.props.handleGrid(
+        this.state.color
+      );
+    })
+  };
 
 
   render() {
@@ -91,6 +103,16 @@ class Form extends Component {
           step="1"
           onChange={(e) => this.handleSpeed(e.target.value)}
         ></input>
+
+        <label htmlFor="color">Color</label>
+        <input
+          type = "color"
+          id="color"
+          name= "color"
+          value={this.state.color}
+          onChange={(e) => this.handleColor(e.target.value)}
+          >
+          </input>
 
       </form>
     );

@@ -9,13 +9,15 @@ function App() {
   const [width, setWidth] = useState("");
   const [running, setRunning] = useState(false);
   const [speed, setSpeed] = useState("");
+  const [color, setColor] = useState("#000000")
 
-  function handleGrid(rows, columns, size, speed) {
+  function handleGrid(rows, columns, size, speed, color) {
     createGrid(rows, columns);
     setSize(size);
     let fSize = size || 20;
     setWidth(columns * fSize);
     setSpeed(speed);
+    setColor(color);
   }
 
   function createGrid(rows, columns) {
@@ -48,6 +50,7 @@ function App() {
             setRunning={setRunning}
             running={running}
             speed={speed}
+            color={color}
           />
         </React.Fragment>
       ) : (
