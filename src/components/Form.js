@@ -14,8 +14,6 @@ class Form extends Component {
     );
   };
 
-  // HANDLECOLOR
-
   handleSpeed = (value) => {
     this.setState({ speed: value });
     this.props.setSpeed(speed[this.state.speed]);
@@ -80,7 +78,11 @@ class Form extends Component {
           id="color"
           name="color"
           value={this.state.color}
-          onChange={(e) => this.handleColor(e.target.value)}
+          onChange={(e) =>
+            this.setState({ color: e.target.value }, () => {
+              this.props.setColor(this.state.color);
+            })
+          }
         ></input>
       </form>
     );

@@ -10,6 +10,7 @@ function App() {
   const [running, setRunning] = useState(false);
   const [speed, setSpeed] = useState(500);
   const [columns, setColumns] = useState("");
+  const [color, setColor] = useState("#000");
   const child = useRef();
 
   function handleSize(size) {
@@ -48,6 +49,7 @@ function App() {
         createGrid={createGrid}
         setSpeed={setSpeed}
         handleSize={handleSize}
+        setColor={setColor}
       />
       {grid ? (
         <React.Fragment>
@@ -60,6 +62,7 @@ function App() {
             running={running}
             speed={speed}
             ref={child}
+            color={color}
           />
         </React.Fragment>
       ) : (
