@@ -19,6 +19,7 @@ function App() {
   }
 
   function createGrid(rows, columns, option) {
+    child.current.stopSim();
     setColumns(columns);
     setWidth(columns * size);
     if (rows && columns) {
