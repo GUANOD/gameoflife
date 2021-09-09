@@ -2,7 +2,7 @@ import React, { Component } from "react";
 const speed = [1000, 900, 800, 700, 600, 500, 400, 300, 200, 100];
 
 class Form extends Component {
-  state = { rows: "", columns: "", size: "", speed: "" };
+  state = { rows: "", columns: "", size: "", speed: "", color: "#000000" };
 
   handleChange = (target) => {
     console.log(target.value);
@@ -13,6 +13,8 @@ class Form extends Component {
       }
     );
   };
+
+  // HANDLECOLOR
 
   handleSpeed = (value) => {
     this.setState({ speed: value });
@@ -70,6 +72,15 @@ class Form extends Component {
           value={this.state.speed}
           step="1"
           onChange={(e) => this.handleSpeed(e.target.value)}
+        ></input>
+
+        <label htmlFor="color">Color</label>
+        <input
+          type="color"
+          id="color"
+          name="color"
+          value={this.state.color}
+          onChange={(e) => this.handleColor(e.target.value)}
         ></input>
       </form>
     );
