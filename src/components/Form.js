@@ -101,6 +101,15 @@ class Form extends Component {
         >
           Reset
         </button>
+        <button
+        onClick={(e) => {
+          e.preventDefault();
+          this.props.lastGrid();
+
+        }}
+        >
+          Show last step
+        </button>
       </form>
     );
   }

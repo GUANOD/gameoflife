@@ -5,9 +5,12 @@ class Table extends Component {
     run: 0,
     interval: "",
     grid: this.props.grid,
+    oldGrid : []
   };
 
   handleGridChange = (i, j) => {
+    this.setState({oldGrid : this.state.grid});
+    console.log(this.state.oldGrid);
     console.log(i, j);
     let newGrid = [...this.state.grid];
     console.log("stategrid", this.state.grid);

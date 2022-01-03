@@ -12,14 +12,20 @@ function App() {
   const [columns, setColumns] = useState("");
   const [color, setColor] = useState("#000");
   const child = useRef();
+  const [oldGrid, setOldGrid] = useState([]);
 
   function handleSize(size) {
     setSize(size);
     setWidth(columns * size);
   }
 
+  function lastGrid(oldGrid){
+    this.setState({grid : this.state.oldGrid})
+  }
+
   function createGrid(rows, columns, option) {
     if (grid.length) child.current.stopSim();
+    this.setState({oldGrid : this.state.grid});
 
     setColumns(columns);
     setWidth(columns * size);
@@ -56,6 +62,8 @@ function App() {
         setSpeed={setSpeed}
         handleSize={handleSize}
         setColor={setColor}
+        setOldGrid= {setOldGrid}
+        lastGrid={lastGrid}
       />
       {grid.length ? (
         <React.Fragment>
@@ -69,6 +77,7 @@ function App() {
             speed={speed}
             ref={child}
             color={color}
+            oldGrid={oldGrid}
           />
         </React.Fragment>
       ) : (
